@@ -1,0 +1,53 @@
+{
+  "manifest_version": 3,
+  "name": "Google Images GIF Grabber",
+  "version": "1.0.0",
+  "description": "On Google Images, finds the real animated GIFs among the results and downloads them with the search-term names (term_1.gif, term_2.gif…). Static JPG/PNG/WebP images are detected and ignored automatically.",
+  "minimum_chrome_version": "110",
+  "permissions": ["downloads", "storage", "notifications", "activeTab", "scripting"],
+  "host_permissions": ["<all_urls>"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Google Images GIF Grabber — download the GIFs from this search",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://www.google.com/*", "*://google.com/*",
+        "*://www.google.ad/*", "*://www.google.ae/*", "*://www.google.at/*",
+        "*://www.google.be/*", "*://www.google.ca/*", "*://www.google.ch/*",
+        "*://www.google.co.id/*", "*://www.google.co.in/*", "*://www.google.co.jp/*",
+        "*://www.google.co.kr/*", "*://www.google.co.nz/*", "*://www.google.co.th/*",
+        "*://www.google.co.uk/*", "*://www.google.co.za/*", "*://www.google.com.au/*",
+        "*://www.google.com.br/*", "*://www.google.com.hk/*", "*://www.google.com.mx/*",
+        "*://www.google.com.sa/*", "*://www.google.com.sg/*", "*://www.google.com.tr/*",
+        "*://www.google.com.tw/*", "*://www.google.com.vn/*", "*://www.google.cz/*",
+        "*://www.google.de/*", "*://www.google.dk/*", "*://www.google.es/*",
+        "*://www.google.fi/*", "*://www.google.fr/*", "*://www.google.gr/*",
+        "*://www.google.hu/*", "*://www.google.ie/*", "*://www.google.il/*",
+        "*://www.google.it/*", "*://www.google.mx/*", "*://www.google.nl/*",
+        "*://www.google.no/*", "*://www.google.pl/*", "*://www.google.pt/*",
+        "*://www.google.ro/*", "*://www.google.ru/*", "*://www.google.se/*",
+        "*://www.google.sg/*"
+      ],
+      "js": ["lib/gg-core.js", "content.js"],
+      "css": ["content.css"],
+      "run_at": "document_idle"
+    }
+  ]
+}

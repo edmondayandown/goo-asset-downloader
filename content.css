@@ -1,0 +1,162 @@
+/* Google Images GIF Grabber — on-page styles (hover download button + HUD) */
+
+/* card hosting the hover button */
+.ggg-card {
+  position: relative !important;
+}
+
+/* one-click download button, top-left */
+button.ggg-btn {
+  position: absolute !important;
+  top: 8px !important;
+  left: 8px !important;
+  z-index: 2147483000;
+  width: 34px !important;
+  height: 34px !important;
+  min-width: 34px !important;
+  min-height: 34px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: 1px solid rgba(255, 255, 255, 0.25) !important;
+  border-radius: 10px !important;
+  background: rgba(17, 17, 26, 0.85) !important;
+  color: #fff !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  opacity: 0;
+  transform: translateY(-3px);
+  transition: opacity 0.15s ease, transform 0.15s ease, background 0.2s ease;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(6px);
+  line-height: 1 !important;
+  text-indent: 0 !important;
+}
+
+.ggg-card:hover button.ggg-btn,
+button.ggg-btn.ggg-busy,
+button.ggg-btn.ggg-ok,
+button.ggg-btn.ggg-err {
+  opacity: 1;
+  transform: none;
+}
+
+button.ggg-btn:hover {
+  background: rgba(26, 115, 232, 0.95) !important;
+}
+
+button.ggg-btn.ggg-ok {
+  background: #188038 !important;
+  border-color: rgba(255, 255, 255, 0.35) !important;
+}
+
+button.ggg-btn.ggg-err {
+  background: #d93025 !important;
+}
+
+button.ggg-btn svg {
+  width: 18px;
+  height: 18px;
+  pointer-events: none;
+  display: block;
+}
+
+button.ggg-btn.ggg-busy svg {
+  animation: ggg-spin 0.9s linear infinite;
+}
+
+/* HUD pill shown during auto-scroll / auto-grab */
+.ggg-hud {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 2147483600;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px 10px 14px;
+  border-radius: 14px;
+  background: rgba(15, 15, 22, 0.9);
+  color: #fff;
+  font: 500 13px/1.35 -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  max-width: 340px;
+}
+
+.ggg-hud.ggg-hud-done {
+  border-color: rgba(24, 128, 56, 0.6);
+}
+
+.ggg-hud-ico {
+  width: 18px;
+  height: 18px;
+  flex: none;
+  color: #8ab4f8;
+  animation: ggg-spin 1.1s linear infinite;
+}
+
+.ggg-hud.ggg-hud-idle .ggg-hud-ico {
+  animation: none;
+}
+
+.ggg-hud-main {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 120px;
+}
+
+.ggg-hud-status {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 230px;
+}
+
+.ggg-hud-bar {
+  position: relative;
+  height: 4px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.18);
+  overflow: hidden;
+}
+
+.ggg-hud-bar.ggg-hidden {
+  visibility: hidden;
+}
+
+.ggg-hud-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 0%;
+  border-radius: 2px;
+  background: linear-gradient(90deg, #1a73e8, #34a853);
+  transition: width 0.25s ease;
+}
+
+.ggg-hud-stop {
+  flex: none;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  font: 600 12px/1 inherit;
+  font-family: inherit;
+  padding: 6px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.ggg-hud-stop:hover {
+  background: rgba(217, 48, 37, 0.85);
+}
+
+@keyframes ggg-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
